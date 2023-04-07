@@ -45,7 +45,7 @@ def actions():
 
   # run the agent
   # response = run_agent(prompt, tools)
-  response = run_custom_agent(prompt, tools)
+  response = run_agent(prompt, tools)
 
   # run the agent and return the response
   return jsonify({"id": f"actn-{uuid.uuid4()}", "response": response}), 200
