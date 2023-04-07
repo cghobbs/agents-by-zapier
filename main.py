@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify
 from app.request_validator import validate_request
 from app.prompts import prompt_template_document_qa
 from app.tools import doc_search_tools, nla_tools
-from app.agents import run_agent
+from app.agents import run_agent, run_custom_agent
 
 open_api_key = os.environ['OPENAI_API_KEY']
 zapier_nla_api_key = os.environ['ZAPIER_NLA_API_KEY']
@@ -44,7 +44,8 @@ def actions():
   tools = nla_tools()
 
   # run the agent
-  response = run_agent(prompt, tools)
+  # response = run_agent(prompt, tools)
+  response = run_custom_agent(prompt, tools)
 
   # run the agent and return the response
   return jsonify({"id": f"actn-{uuid.uuid4()}", "response": response}), 200
